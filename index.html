@@ -1,220 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Eternal Promise to DEA</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-body{
-margin:0;
-padding:0;
-font-family:'Poppins',sans-serif;
-background:#0f0f1e;
-overflow-x:hidden;
-color:white;
-}
-
-.font-dancing{font-family:'Dancing Script',cursive;}
-.font-cormorant{font-family:'Cormorant Garamond',serif;}
-
-.section{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-padding:2rem;
-text-align:center;
-}
-
-.hidden{display:none;}
-
-.btn{
-background:linear-gradient(135deg,#ec4899,#be185d);
-padding:14px 30px;
-border-radius:50px;
-font-weight:bold;
-transition:0.3s;
-}
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 25px #ec4899;
-}
-
-.star{
-position:fixed;
-background:white;
-border-radius:50%;
-animation:twinkle 3s infinite;
-}
-@keyframes twinkle{
-0%,100%{opacity:0.2;}
-50%{opacity:1;}
-}
-
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-15px)}
-}
-@keyframes heartbeat{
-0%,100%{transform:scale(1)}
-50%{transform:scale(1.1)}
-}
-
-@keyframes heartFloat{
-0%{transform:translateY(0) scale(0);opacity:1}
-100%{transform:translateY(-100vh) scale(1.5);opacity:0}
-}
-
-.heart{
-position:fixed;
-animation:heartFloat 4s linear forwards;
-pointer-events:none;
-}
-
-.diamond{
-font-size:8rem;
-animation:float 3s infinite;
-filter:drop-shadow(0 0 20px #ec4899);
-}
-
-.escape{
-position:absolute;
-transition:0.3s;
-}
-</style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>My Eternal Promise to You</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: #0f0f1e; }
+ .font-dancing { font-family: 'Dancing Script', cursive; }
+ .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+ #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+ .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--duration) ease-in-out infinite; }
+ @keyframes twinkle { 0%,100%{opacity:0.2;transform:scale(0.8);}50%{opacity:1;transform:scale(1.2);} }
+ .section { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; padding:2rem; }
+ .hidden-section { display:none!important; }
+ .glass-card { background:rgba(255,255,255,0.05); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); }
+ @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+ @keyframes heartbeat {0%,100%{transform:scale(1);}25%{transform:scale(1.05);}50%{transform:scale(1);}75%{transform:scale(1.05);}}
+ @keyframes slideUp {from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
+ @keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
+ @keyframes glow {0%,100%{box-shadow:0 0 20px rgba(236,72,153,0.5);}50%{box-shadow:0 0 40px rgba(236,72,153,0.8),0 0 60px rgba(236,72,153,0.4);}}
+ @keyframes write {from{width:0;}to{width:100%;}}
+ .animate-float{animation:float 6s ease-in-out infinite;}
+ .animate-heartbeat{animation:heartbeat 2s ease-in-out infinite;}
+ .animate-slide-up{animation:slideUp 1s ease-out forwards;}
+ .animate-fade-in{animation:fadeIn 2s ease-out forwards;}
+ .animate-glow{animation:glow 2s ease-in-out infinite;}
+ .typewriter{overflow:hidden;border-right:3px solid rgba(236,72,153,0.8);white-space:nowrap;animation:write 3s steps(40) forwards,blink 0.75s step-end infinite;}
+ @keyframes blink{50%{border-color:transparent;}}
+ .distance-line{height:2px;background:linear-gradient(90deg,transparent,rgba(236,72,153,0.5),transparent);position:relative;overflow:hidden;}
+ .distance-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,#ec4899,transparent);animation:travel 3s linear infinite;}
+ @keyframes travel{to{left:100%;}}
+ .heart-particle{position:fixed;color:#ec4899;pointer-events:none;animation:heartFloat 4s ease-out forwards;z-index:1000;}
+ @keyframes heartFloat{0%{transform:translateY(0) scale(0) rotate(0deg);opacity:1;}100%{transform:translateY(-100vh) scale(1.5) rotate(360deg);opacity:0;}}
+ .ring-container{position:relative;width:200px;height:200px;}
+ .ring{position:absolute;border:4px solid rgba(236,72,153,0.3);border-radius:50%;animation:ringPulse 2s ease-out infinite;}
+ .ring:nth-child(1){width:100%;height:100%;top:0;left:0;}
+ .ring:nth-child(2){width:80%;height:80%;top:10%;left:10%;animation-delay:0.5s;}
+ .ring:nth-child(3){width:60%;height:60%;top:20%;left:20%;animation-delay:1s;}
+ @keyframes ringPulse{0%{transform:scale(0.8);opacity:1;}100%{transform:scale(1.5);opacity:0;}}
+ .diamond-ring{font-size:8rem;filter:drop-shadow(0 0 30px rgba(236,72,153,0.8));animation:diamondFloat 3s ease-in-out infinite;}
+ @keyframes diamondFloat{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-15px) rotate(5deg);}}
+ .escape-btn{position:absolute;transition:all 0.3s ease;}
+ </style>
 </head>
-
 <body>
 
-<!-- STARFIELD -->
-<script>
-for(let i=0;i<150;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.width=s.style.height=Math.random()*3+"px";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
-}
-</script>
+<div id="starfield"></div>
 
 <!-- SECTION 1 -->
-<div id="s1" class="section">
-<h1 class="font-dancing text-6xl text-pink-400 mb-4">DEA 💖</h1>
-<p class="font-cormorant text-2xl text-gray-300 italic mb-10">
+<section id="section1" class="section">
+<div class="text-center max-w-4xl mx-auto">
+<div class="mb-8 animate-float">
+<span class="text-6xl md:text-8xl">💖</span>
+</div>
+
+<h1 class="font-dancing text-5xl md:text-7xl text-pink-400 mb-6 animate-fade-in">
+DEA 💖
+</h1>
+
+<div class="h-16 md:h-20 flex items-center justify-center">
+<p id="typewriter-text" class="font-cormorant text-xl md:text-3xl text-gray-300 italic typewriter">
 Even the stars whisper your name every night...
 </p>
-<button class="btn" onclick="next(2)">Begin Our Journey 💕</button>
 </div>
 
-<!-- SECTION 2 -->
-<div id="s2" class="section hidden">
-<h2 class="font-dancing text-5xl text-pink-400 mb-6">Miles Apart, Heart to Heart ❤️</h2>
-<p class="font-cormorant text-xl max-w-2xl mb-8">
-Distance is only testing how strong our love truly is.
-No matter the miles between us, my heart belongs only to you.
-</p>
-<button class="btn" onclick="next(3)">My Promises 💫</button>
+<button onclick="nextSection(2)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold mt-12 animate-glow">
+Begin Our Journey 💗
+</button>
 </div>
+</section>
 
-<!-- SECTION 3 -->
-<div id="s3" class="section hidden">
-<h2 class="font-dancing text-5xl text-pink-400 mb-12">My Sacred Promises</h2>
+<!-- SECTION 3 PROMISE ICONS FIXED -->
+<div class="text-5xl mb-6 animate-float">🛡️</div>
+<div class="text-5xl mb-6 animate-float" style="animation-delay: 0.5s">⏳</div>
+<div class="text-5xl mb-6 animate-float" style="animation-delay: 1s">✈️</div>
 
-<div class="grid md:grid-cols-3 gap-10 max-w-5xl">
-<div>
-<div class="text-5xl mb-4 animate-bounce">🛡️</div>
-<h3 class="text-pink-300 text-xl font-bold">Unwavering Support</h3>
-<p>I will always stand beside you in every storm.</p>
-</div>
+<!-- PROPOSAL RING -->
+<div class="diamond-ring mb-8">💍</div>
 
-<div>
-<div class="text-5xl mb-4">⏳</div>
-<h3 class="text-pink-300 text-xl font-bold">Till My Last Breath</h3>
-<p>I will wait for you through every lifetime.</p>
-</div>
+<!-- CELEBRATION EMOJI -->
+<div class="text-9xl mb-8 animate-heartbeat">💍❤️</div>
 
-<div>
-<div class="text-5xl mb-4">✈️</div>
-<h3 class="text-pink-300 text-xl font-bold">Coming For You</h3>
-<p>One day I will cross every distance just to hold you.</p>
-</div>
-</div>
-
-<button class="btn mt-12" onclick="next(4)">Our Future 💍</button>
-</div>
-
-<!-- SECTION 4 -->
-<div id="s4" class="section hidden">
-<h2 class="font-dancing text-5xl text-pink-400 mb-10">Our Future Awaits</h2>
-<p class="text-xl mb-4">Today — Sending you my love 💕</p>
-<p class="text-xl mb-4">Soon — Our first long hug 🤗</p>
-<p class="text-xl mb-4">Forever — Never apart again ❤️</p>
-
-<button class="btn mt-8" onclick="next(5)">The Question 💖</button>
-</div>
-
-<!-- SECTION 5 -->
-<div id="s5" class="section hidden relative">
-<div class="diamond">💍</div>
-<h2 class="font-dancing text-5xl text-pink-400 mt-6 mb-6">
-Will You Marry Me?
-</h2>
-
-<div class="flex gap-6 relative h-24 justify-center items-center">
-<button onclick="yes()" class="btn text-xl">YES, Forever! ❤️</button>
-<button id="no" class="escape bg-gray-600 px-6 py-2 rounded-full">I need time...</button>
-</div>
-</div>
-
-<!-- SECTION 6 -->
-<div id="s6" class="section hidden">
-<div class="text-8xl animate-pulse mb-6">💍❤️</div>
-<h2 class="font-dancing text-6xl text-pink-400 mb-6">
-She Said YES!
-</h2>
-<p class="text-2xl mb-8">Our forever begins now...</p>
-
-<p class="italic text-gray-300 max-w-xl mb-6">
-From this day forward, you will never walk alone.
-My heart will be your shelter and my arms your home.
-</p>
-
-<h3 class="font-dancing text-3xl text-pink-400 mt-6">
-— Kishorekumar
-</h3>
-</div>
+<p class="font-dancing text-2xl text-pink-400 mt-4">— Kishorekumar ❤️</p>
 
 <script>
-function next(n){
-document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
-document.getElementById("s"+n).classList.remove("hidden");
-window.scrollTo(0,0);
+function createStarfield(){
+const container=document.getElementById('starfield');
+for(let i=0;i<200;i++){
+const star=document.createElement('div');
+star.className='star';
+star.style.left=Math.random()*100+'%';
+star.style.top=Math.random()*100+'%';
+star.style.width=Math.random()*3+'px';
+star.style.height=star.style.width;
+star.style.setProperty('--duration',(Math.random()*3+2)+'s');
+container.appendChild(star);
 }
-
-document.getElementById("no").addEventListener("mouseover",function(){
-this.style.top=Math.random()*200-100+"px";
-this.style.left=Math.random()*200-100+"px";
-});
-
-function yes(){
-next(6);
-setInterval(createHeart,200);
 }
+createStarfield();
 
-function createHeart(){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML=["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
-h.style.left=Math.random()*100+"vw";
-h.style.bottom="0";
-h.style.fontSize=Math.random()*30+20+"px";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),4000);
+const hearts=['❤️','💖','💕','💗','💘','💞'];
+
+function createHeartParticle(){
+const heart=document.createElement('div');
+heart.className='heart-particle';
+heart.innerHTML=['❤️','💖','💕','💘'][Math.floor(Math.random()*4)];
+heart.style.left=Math.random()*window.innerWidth+'px';
+heart.style.top=window.innerHeight+'px';
+heart.style.fontSize=(Math.random()*30+20)+'px';
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
 }
 </script>
 
