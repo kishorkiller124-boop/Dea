@@ -7,123 +7,720 @@
  <script src="https://cdn.tailwindcss.com"></script>
  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
  <style>
- *{margin:0;padding:0;box-sizing:border-box;}
- body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#0f0f1e;}
- .font-dancing{font-family:'Dancing Script',cursive;}
- .font-cormorant{font-family:'Cormorant Garamond',serif;}
- #starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
- .star{position:absolute;background:white;border-radius:50%;animation:twinkle var(--duration) ease-in-out infinite;}
- @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8);}50%{opacity:1;transform:scale(1.2);}}
- .section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:2rem;}
- .hidden-section{display:none!important;}
- .glass-card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);box-shadow:0 25px 50px -12px rgba(0,0,0,.5);}
- @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
- @keyframes heartbeat{0%,100%{transform:scale(1);}25%{transform:scale(1.05);}50%{transform:scale(1);}75%{transform:scale(1.05);}}
- @keyframes slideUp{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
- @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
- @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(236,72,153,.5);}50%{box-shadow:0 0 40px rgba(236,72,153,.8),0 0 60px rgba(236,72,153,.4);}}
- @keyframes write{from{width:0;}to{width:100%;}}
- .animate-float{animation:float 6s ease-in-out infinite;}
- .animate-heartbeat{animation:heartbeat 2s ease-in-out infinite;}
- .animate-slide-up{animation:slideUp 1s ease-out forwards;}
- .animate-fade-in{animation:fadeIn 2s ease-out forwards;}
- .animate-glow{animation:glow 2s ease-in-out infinite;}
- .typewriter{overflow:hidden;border-right:3px solid rgba(236,72,153,.8);white-space:nowrap;animation:write 3s steps(40) forwards,blink .75s step-end infinite;}
- @keyframes blink{50%{border-color:transparent;}}
- .distance-line{height:2px;background:linear-gradient(90deg,transparent,rgba(236,72,153,.5),transparent);position:relative;overflow:hidden;}
- .distance-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,#ec4899,transparent);animation:travel 3s linear infinite;}
- @keyframes travel{to{left:100%;}}
- .heart-particle{position:fixed;color:#ec4899;pointer-events:none;animation:heartFloat 4s ease-out forwards;z-index:1000;}
- @keyframes heartFloat{0%{transform:translateY(0) scale(0) rotate(0);opacity:1;}100%{transform:translateY(-100vh) scale(1.5) rotate(360deg);opacity:0;}}
- .ring-container{position:relative;width:200px;height:200px;}
- .ring{position:absolute;border:4px solid rgba(236,72,153,.3);border-radius:50%;animation:ringPulse 2s ease-out infinite;}
- .ring:nth-child(1){width:100%;height:100%;top:0;left:0;}
- .ring:nth-child(2){width:80%;height:80%;top:10%;left:10%;animation-delay:.5s;}
- .ring:nth-child(3){width:60%;height:60%;top:20%;left:20%;animation-delay:1s;}
- @keyframes ringPulse{0%{transform:scale(.8);opacity:1;}100%{transform:scale(1.5);opacity:0;}}
- .promise-card{transition:all .5s ease;transform-style:preserve-3d;}
- .promise-card:hover{transform:translateY(-10px) rotateX(5deg);box-shadow:0 30px 60px rgba(236,72,153,.3);}
- .btn-primary{background:linear-gradient(135deg,#ec4899 0%,#be185d 100%);transition:all .3s ease;position:relative;overflow:hidden;}
- .btn-primary:hover{transform:scale(1.05);}
- .timeline-item{opacity:0;transform:translateX(-50px);transition:all .8s ease;}
- .timeline-item.visible{opacity:1;transform:translateX(0);}
- .diamond-ring{font-size:8rem;filter:drop-shadow(0 0 30px rgba(236,72,153,.8));animation:diamondFloat 3s ease-in-out infinite;}
- @keyframes diamondFloat{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-15px) rotate(5deg);}}
- .escape-btn{position:absolute;transition:all .3s ease;}
- .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;}
- @keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0);}40%{transform:translateX(-50%) translateY(-10px);}60%{transform:translateX(-50%) translateY(-5px);}}
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Poppins', sans-serif;
+ overflow-x: hidden;
+ background: #0f0f1e;
+ }
+
+ .font-dancing {
+ font-family: 'Dancing Script', cursive;
+ }
+
+ .font-cormorant {
+ font-family: 'Cormorant Garamond', serif;
+ }
+
+ /* Starfield Background */
+ #starfield {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1;
+ }
+
+ .star {
+ position: absolute;
+ background: white;
+ border-radius: 50%;
+ animation: twinkle var(--duration) ease-in-out infinite;
+ }
+
+ @keyframes twinkle {
+ 0%, 100% { opacity: 0.2; transform: scale(0.8); }
+ 50% { opacity: 1; transform: scale(1.2); }
+ }
+
+ /* Page Sections */
+ .section {
+ min-height: 100vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ padding: 2rem;
+ }
+
+ .hidden-section {
+ display: none !important;
+ }
+
+ /* Glass Card */
+ .glass-card {
+ background: rgba(255, 255, 255, 0.05);
+ backdrop-filter: blur(20px);
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+ }
+
+ /* Animations */
+ @keyframes float {
+ 0%, 100% { transform: translateY(0px); }
+ 50% { transform: translateY(-20px); }
+ }
+
+ @keyframes heartbeat {
+ 0%, 100% { transform: scale(1); }
+ 25% { transform: scale(1.05); }
+ 50% { transform: scale(1); }
+ 75% { transform: scale(1.05); }
+ }
+
+ @keyframes slideUp {
+ from { opacity: 0; transform: translateY(50px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ @keyframes fadeIn {
+ from { opacity: 0; }
+ to { opacity: 1; }
+ }
+
+ @keyframes glow {
+ 0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.5); }
+ 50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.4); }
+ }
+
+ @keyframes write {
+ from { width: 0; }
+ to { width: 100%; }
+ }
+
+ .animate-float { animation: float 6s ease-in-out infinite; }
+ .animate-heartbeat { animation: heartbeat 2s ease-in-out infinite; }
+ .animate-slide-up { animation: slideUp 1s ease-out forwards; }
+ .animate-fade-in { animation: fadeIn 2s ease-out forwards; }
+ .animate-glow { animation: glow 2s ease-in-out infinite; }
+
+ /* Typewriter Effect */
+ .typewriter {
+ overflow: hidden;
+ border-right: 3px solid rgba(236, 72, 153, 0.8);
+ white-space: nowrap;
+ animation: write 3s steps(40) forwards, blink 0.75s step-end infinite;
+ }
+
+ @keyframes blink {
+ 50% { border-color: transparent; }
+ }
+
+ /* Distance Visualization */
+ .distance-line {
+ height: 2px;
+ background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.5), transparent);
+ position: relative;
+ overflow: hidden;
+ }
+
+ .distance-line::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: -100%;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(90deg, transparent, #ec4899, transparent);
+ animation: travel 3s linear infinite;
+ }
+
+ @keyframes travel {
+ to { left: 100%; }
+ }
+
+ /* Heart Particles */
+ .heart-particle {
+ position: fixed;
+ color: #ec4899;
+ pointer-events: none;
+ animation: heartFloat 4s ease-out forwards;
+ z-index: 1000;
+ }
+
+ @keyframes heartFloat {
+ 0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 1; }
+ 100% { transform: translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
+ }
+
+ /* Ring Animation */
+ .ring-container {
+ position: relative;
+ width: 200px;
+ height: 200px;
+ }
+
+ .ring {
+ position: absolute;
+ border: 4px solid rgba(236, 72, 153, 0.3);
+ border-radius: 50%;
+ animation: ringPulse 2s ease-out infinite;
+ }
+
+ .ring:nth-child(1) { width: 100%; height: 100%; top: 0; left: 0; animation-delay: 0s; }
+ .ring:nth-child(2) { width: 80%; height: 80%; top: 10%; left: 10%; animation-delay: 0.5s; }
+ .ring:nth-child(3) { width: 60%; height: 60%; top: 20%; left: 20%; animation-delay: 1s; }
+
+ @keyframes ringPulse {
+ 0% { transform: scale(0.8); opacity: 1; }
+ 100% { transform: scale(1.5); opacity: 0; }
+ }
+
+ /* Promise Cards */
+ .promise-card {
+ transition: all 0.5s ease;
+ transform-style: preserve-3d;
+ }
+
+ .promise-card:hover {
+ transform: translateY(-10px) rotateX(5deg);
+ box-shadow: 0 30px 60px rgba(236, 72, 153, 0.3);
+ }
+
+ /* Button Styles */
+ .btn-primary {
+ background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+ }
+
+ .btn-primary::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: -100%;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+ transition: left 0.5s;
+ }
+
+ .btn-primary:hover::before {
+ left: 100%;
+ }
+
+ .btn-primary:hover {
+ transform: scale(1.05);
+ box-shadow: 0 20px 40px rgba(236, 72, 153, 0.4);
+ }
+
+ /* Calendar/Timeline */
+ .timeline-item {
+ opacity: 0;
+ transform: translateX(-50px);
+ transition: all 0.8s ease;
+ }
+
+ .timeline-item.visible {
+ opacity: 1;
+ transform: translateX(0);
+ }
+
+ /* Final Proposal Ring */
+ .diamond-ring {
+ font-size: 8rem;
+ filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.8));
+ animation: diamondFloat 3s ease-in-out infinite;
+ }
+
+ @keyframes diamondFloat {
+ 0%, 100% { transform: translateY(0) rotate(-5deg); }
+ 50% { transform: translateY(-15px) rotate(5deg); }
+ }
+
+ /* Pulse Button for "No" */
+ .escape-btn {
+ position: absolute;
+ transition: all 0.3s ease;
+ }
+
+ /* Scroll indicator */
+ .scroll-indicator {
+ position: absolute;
+ bottom: 2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ animation: bounce 2s infinite;
+ }
+
+ @keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+ 40% { transform: translateX(-50%) translateY(-10px); }
+ 60% { transform: translateX(-50%) translateY(-5px); }
+ }
+
+ /* Constellation Lines */
+ .constellation {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ pointer-events: none;
+ }
+
+ /* Mobile Responsive */
+ @media (max-width: 768px) {
+ .typewriter {
+ white-space: normal;
+ border-right: none;
+ animation: fadeIn 2s ease-out forwards;
+ }
+ }
  </style>
 </head>
 <body>
 
-<div id="starfield"></div>
+ <!-- Starfield Background -->
+ <div id="starfield"></div>
 
-<section id="section1" class="section">
-<div class="text-center max-w-4xl mx-auto">
-<div class="mb-8 animate-float">
-<span class="text-6xl md:text-8xl">💖</span>
-</div>
-<h1 class="font-dancing text-5xl md:text-7xl text-pink-400 mb-6 animate-fade-in">
-My Dearest Love 💕
-</h1>
-<div class="h-16 md:h-20 flex items-center justify-center">
-<p id="typewriter-text" class="font-cormorant text-xl md:text-3xl text-gray-300 italic typewriter">
-Even the stars whisper your name every night...
-</p>
-</div>
-<button onclick="nextSection(2)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold mt-12 animate-glow">
-Begin Our Journey 💖
-</button>
-<div class="scroll-indicator text-pink-400 text-2xl">↓</div>
-</div>
-</section>
+ <!-- SECTION 1: The Beginning -->
+ <section id="section1" class="section">
+ <div class="text-center max-w-4xl mx-auto">
+ <div class="mb-8 animate-float">
+ <span class="text-6xl md:text-8xl"> </span>
+ </div>
+ 
+ <h1 class="font-dancing text-5xl md:text-7xl text-pink-400 mb-6 animate-fade-in">
+ My Dearest Love
+ </h1>
+ 
+ <div class="h-16 md:h-20 flex items-center justify-center">
+ <p id="typewriter-text" class="font-cormorant text-xl md:text-3xl text-gray-300 italic typewriter">
+ Even the stars whisper your name every night...
+ </p>
+ </div>
 
-<!-- Remaining sections are IDENTICAL to yours, only emojis inserted -->
+ <button onclick="nextSection(2)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold mt-12 animate-glow">
+ Begin Our Journey 
+ </button>
 
-<script>
-function createStarfield(){
-const container=document.getElementById('starfield');
-for(let i=0;i<200;i++){
-const star=document.createElement('div');
-star.className='star';
-star.style.left=Math.random()*100+'%';
-star.style.top=Math.random()*100+'%';
-star.style.width=Math.random()*3+'px';
-star.style.height=star.style.width;
-star.style.setProperty('--duration',(Math.random()*3+2)+'s');
-star.style.animationDelay=Math.random()*5+'s';
-container.appendChild(star);
-}}
-createStarfield();
+ <div class="scroll-indicator text-pink-400 text-2xl">
+ ↓
+ </div>
+ </div>
+ </section>
 
-function startProposalHearts(){
-const container=document.getElementById('proposal-hearts');
-const hearts=['❤️','💖','💕','💗','💘','💞'];
-setInterval(()=>{
-const heart=document.createElement('div');
-heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
-heart.style.position='absolute';
-heart.style.left=Math.random()*100+'%';
-heart.style.bottom='0';
-heart.style.fontSize=(Math.random()*20+10)+'px';
-heart.style.opacity='0.6';
-heart.style.animation='heartFloat 4s ease-out forwards';
-container.appendChild(heart);
-setTimeout(()=>heart.remove(),4000);
-},300);
-}
+ <!-- SECTION 2: The Distance -->
+ <section id="section2" class="section hidden-section">
+ <div class="glass-card rounded-3xl p-8 md:p-16 max-w-5xl w-full mx-4">
+ <div class="grid md:grid-cols-2 gap-12 items-center">
+ <div>
+ <h2 class="font-dancing text-4xl md:text-6xl text-pink-400 mb-6">
+ Miles Apart, Heart to Heart
+ </h2>
+ 
+ <div class="distance-line mb-8 rounded-full"></div>
+ 
+ <p class="font-cormorant text-xl md:text-2xl text-gray-300 leading-relaxed mb-6">
+ They say distance is a test of love. But for us, it has only proven how deeply our souls are connected across the miles.
+ </p>
+ 
+ <p class="font-cormorant text-lg text-pink-300 italic">
+ "Every sunrise I see, I imagine it rising for you too. Every star I count, I name them after our memories."
+ </p>
+ </div>
+ 
+ <div class="relative">
+ <div class="ring-container mx-auto">
+ <div class="ring"></div>
+ <div class="ring"></div>
+ <div class="ring"></div>
+ <div class="absolute inset-0 flex items-center justify-center text-6xl animate-heartbeat">
+ 
+ </div>
+ </div>
+ 
+ <div class="mt-8 text-center">
+ <p class="text-gray-400 text-sm uppercase tracking-widest mb-2">Distance</p>
+ <p class="font-dancing text-3xl text-pink-400">Infinite Love</p>
+ </div>
+ </div>
+ </div>
 
-function createHeartParticle(){
-const heart=document.createElement('div');
-heart.className='heart-particle';
-heart.innerHTML=['❤️','💖','💕','💘'][Math.floor(Math.random()*4)];
-heart.style.left=Math.random()*window.innerWidth+'px';
-heart.style.top=window.innerHeight+'px';
-heart.style.fontSize=(Math.random()*30+20)+'px';
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),4000);
-}
-</script>
+ <div class="text-center mt-12">
+ <button onclick="nextSection(3)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold">
+ My Promises to You 
+ </button>
+ </div>
+ </div>
+ </section>
 
+ <!-- SECTION 3: The Promises -->
+ <section id="section3" class="section hidden-section">
+ <div class="max-w-6xl mx-auto w-full px-4">
+ <h2 class="font-dancing text-5xl md:text-7xl text-center text-pink-400 mb-16">
+ My Sacred Promises
+ </h2>
+
+ <div class="grid md:grid-cols-3 gap-8">
+ <!-- Promise 1 -->
+ <div class="promise-card glass-card rounded-2xl p-8 text-center">
+ <div class="text-5xl mb-6 animate-float"> </div>
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold mb-4">Unwavering Support</h3>
+ <p class="text-gray-300 leading-relaxed">
+ In every storm, I will be your shelter. In every darkness, I will be your light. I will never leave your side, no matter how hard life becomes.
+ </p>
+ </div>
+
+ <!-- Promise 2 -->
+ <div class="promise-card glass-card rounded-2xl p-8 text-center">
+ <div class="text-5xl mb-6 animate-float" style="animation-delay: 0.5s"> </div>
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold mb-4">Till My Last Breath</h3>
+ <p class="text-gray-300 leading-relaxed">
+ I will wait for you through every season, every year, every lifetime if needed. My love doesn't know the meaning of giving up or moving on.
+ </p>
+ </div>
+
+ <!-- Promise 3 -->
+ <div class="promise-card glass-card rounded-2xl p-8 text-center">
+ <div class="text-5xl mb-6 animate-float" style="animation-delay: 1s"> </div>
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold mb-4">Coming For You</h3>
+ <p class="text-gray-300 leading-relaxed">
+ One day, I will cross every ocean, climb every mountain, and travel any distance just to hold your hand and show you how much I love you.
+ </p>
+ </div>
+ </div>
+
+ <div class="text-center mt-16">
+ <button onclick="nextSection(4)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold">
+ See Our Future Together 
+ </button>
+ </div>
+ </div>
+ </section>
+
+ <!-- SECTION 4: The Timeline -->
+ <section id="section4" class="section hidden-section">
+ <div class="max-w-4xl mx-auto w-full px-4">
+ <h2 class="font-dancing text-5xl md:text-7xl text-center text-pink-400 mb-16">
+ Our Future Awaits
+ </h2>
+
+ <div class="relative">
+ <!-- Timeline Line -->
+ <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-600 rounded-full"></div>
+
+ <!-- Timeline Items -->
+ <div class="space-y-16">
+ <div class="timeline-item flex items-center justify-between">
+ <div class="w-5/12 text-right pr-8">
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold">Today</h3>
+ <p class="text-gray-400">Sending you all my love across the distance</p>
+ </div>
+ <div class="w-2/12 flex justify-center">
+ <div class="w-4 h-4 bg-pink-500 rounded-full animate-glow"></div>
+ </div>
+ <div class="w-5/12"></div>
+ </div>
+
+ <div class="timeline-item flex items-center justify-between">
+ <div class="w-5/12"></div>
+ <div class="w-2/12 flex justify-center">
+ <div class="w-4 h-4 bg-pink-500 rounded-full animate-glow" style="animation-delay: 0.5s"></div>
+ </div>
+ <div class="w-5/12 pl-8">
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold">Soon</h3>
+ <p class="text-gray-400">Our first embrace after so long</p>
+ </div>
+ </div>
+
+ <div class="timeline-item flex items-center justify-between">
+ <div class="w-5/12 text-right pr-8">
+ <h3 class="font-cormorant text-2xl text-pink-300 font-bold">Forever</h3>
+ <p class="text-gray-400">Walking hand in hand, never apart again</p>
+ </div>
+ <div class="w-2/12 flex justify-center">
+ <div class="w-4 h-4 bg-pink-500 rounded-full animate-glow" style="animation-delay: 1s"></div>
+ </div>
+ <div class="w-5/12"></div>
+ </div>
+ </div>
+ </div>
+
+ <div class="text-center mt-16">
+ <button onclick="nextSection(5)" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold">
+ The Question 
+ </button>
+ </div>
+ </div>
+ </section>
+
+ <!-- SECTION 5: The Proposal -->
+ <section id="section5" class="section hidden-section">
+ <div class="glass-card rounded-3xl p-8 md:p-16 max-w-3xl w-full mx-4 text-center relative overflow-hidden">
+ <!-- Background Hearts -->
+ <div id="proposal-hearts" class="absolute inset-0 pointer-events-none"></div>
+
+ <div class="relative z-10">
+ <div class="diamond-ring mb-8"> </div>
+ 
+ <h2 class="font-dancing text-4xl md:text-6xl text-pink-400 mb-6 animate-slide-up">
+ Will You Marry Me?
+ </h2>
+
+ <div class="font-cormorant text-xl md:text-2xl text-gray-300 leading-relaxed mb-12 space-y-4">
+ <p class="animate-slide-up" style="animation-delay: 0.2s">
+ I promise to love you in every universe,<br>
+ in every timeline, in every lifetime.
+ </p>
+ <p class="animate-slide-up text-pink-300 italic" style="animation-delay: 0.4s">
+ "I won't leave you in any situation.<br>
+ I will wait for you till my last breath.<br>
+ Even across this distance, my heart beats only for you.<br>
+ One day, I will come to you and show you<br>
+ just how infinite my love truly is."
+ </p>
+ </div>
+
+ <div class="flex flex-col md:flex-row gap-6 justify-center items-center relative h-32">
+ <button id="yesBtn" onclick="sayYes()" class="btn-primary text-white px-12 py-5 rounded-full text-xl font-bold animate-glow transform hover:scale-110 transition-transform">
+ YES, Forever! 
+ </button>
+ 
+ <button id="noBtn" class="escape-btn bg-gray-700 text-gray-400 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-600 transition-colors">
+ I need time...
+ </button>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- SECTION 6: Celebration -->
+ <section id="section6" class="section hidden-section">
+ <div class="text-center max-w-4xl mx-auto px-4">
+ <div class="text-9xl mb-8 animate-heartbeat"> </div>
+ 
+ <h2 class="font-dancing text-5xl md:text-7xl text-pink-400 mb-6 animate-pop-in">
+ She Said YES!
+ </h2>
+ 
+ <p class="font-cormorant text-2xl md:text-3xl text-gray-300 mb-8">
+ Our forever begins now...
+ </p>
+
+ <div class="glass-card rounded-2xl p-8 max-w-2xl mx-auto mb-8">
+ <p class="font-cormorant text-lg text-gray-400 italic">
+ "From this day forward, you will never walk alone. My heart will be your shelter, and my arms will be your home. I love you more than words could ever express, and I will spend the rest of my life showing you just that."
+ </p>
+ <p class="font-dancing text-2xl text-pink-400 mt-4">— Your Future Husband</p>
+ </div>
+
+ <button onclick="createFireworks()" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold mb-4">
+ Celebrate Our Love! 
+ </button>
+ 
+ <p class="text-gray-500 text-sm mt-8">
+ I promise to make you the happiest person alive.<br>
+ See you soon, my love. 
+ </p>
+ </div>
+ </section>
+
+ <script>
+ // Initialize Starfield
+ function createStarfield() {
+ const container = document.getElementById('starfield');
+ const starCount = 200;
+ 
+ for (let i = 0; i < starCount; i++) {
+ const star = document.createElement('div');
+ star.className = 'star';
+ star.style.left = Math.random() * 100 + '%';
+ star.style.top = Math.random() * 100 + '%';
+ star.style.width = Math.random() * 3 + 'px';
+ star.style.height = star.style.width;
+ star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+ star.style.animationDelay = Math.random() * 5 + 's';
+ container.appendChild(star);
+ }
+ }
+
+ createStarfield();
+
+ // Navigation
+ function nextSection(num) {
+ // Hide all sections
+ document.querySelectorAll('.section').forEach(section => {
+ section.classList.add('hidden-section');
+ });
+ 
+ // Show target section
+ const target = document.getElementById('section' + num);
+ target.classList.remove('hidden-section');
+ 
+ // Animate timeline items if section 4
+ if (num === 4) {
+ setTimeout(() => {
+ document.querySelectorAll('.timeline-item').forEach((item, index) => {
+ setTimeout(() => {
+ item.classList.add('visible');
+ }, index * 300);
+ });
+ }, 500);
+ }
+
+ // Create floating hearts for proposal section
+ if (num === 5) {
+ startProposalHearts();
+ }
+
+ window.scrollTo(0, 0);
+ }
+
+ // Proposal Hearts Animation
+ function startProposalHearts() {
+ const container = document.getElementById('proposal-hearts');
+ const hearts = [' ', ' ', ' ', ' ', ' ', ' '];
+ 
+ setInterval(() => {
+ const heart = document.createElement('div');
+ heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+ heart.style.position = 'absolute';
+ heart.style.left = Math.random() * 100 + '%';
+ heart.style.bottom = '0';
+ heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+ heart.style.opacity = '0.6';
+ heart.style.animation = 'heartFloat 4s ease-out forwards';
+ container.appendChild(heart);
+ 
+ setTimeout(() => heart.remove(), 4000);
+ }, 300);
+ }
+
+ // Tricky No Button
+ const noBtn = document.getElementById('noBtn');
+ const yesBtn = document.getElementById('yesBtn');
+
+ noBtn.addEventListener('mouseover', escape);
+ noBtn.addEventListener('touchstart', escape);
+
+ function escape(e) {
+ e.preventDefault();
+ const section = document.getElementById('section5');
+ const rect = section.getBoundingClientRect();
+ 
+ const maxX = rect.width - 150;
+ const maxY = rect.height - 100;
+ 
+ const randomX = Math.random() * maxX - (maxX / 2);
+ const randomY = Math.random() * maxY - (maxY / 2);
+ 
+ noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+ 
+ // Make yes button bigger
+ yesBtn.style.transform = 'scale(1.2)';
+ setTimeout(() => {
+ yesBtn.style.transform = 'scale(1)';
+ }, 300);
+ }
+
+ // Say Yes Function
+ function sayYes() {
+ nextSection(6);
+ createFireworks();
+ startCelebration();
+ }
+
+ // Celebration Effects
+ function startCelebration() {
+ // Continuous hearts
+ setInterval(() => {
+ createHeartParticle();
+ }, 200);
+ }
+
+ function createHeartParticle() {
+ const heart = document.createElement('div');
+ heart.className = 'heart-particle';
+ heart.innerHTML = [' ', ' ', ' ', ' '][Math.floor(Math.random() * 4)];
+ heart.style.left = Math.random() * window.innerWidth + 'px';
+ heart.style.top = window.innerHeight + 'px';
+ heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+ document.body.appendChild(heart);
+ 
+ setTimeout(() => heart.remove(), 4000);
+ }
+
+ function createFireworks() {
+ const colors = ['#ec4899', '#f472b6', '#fbbf24', '#60a5fa', '#a78bfa'];
+ 
+ for (let i = 0; i < 5; i++) {
+ setTimeout(() => {
+ // Create explosion at random position
+ const x = Math.random() * window.innerWidth;
+ const y = Math.random() * window.innerHeight * 0.5;
+ 
+ for (let j = 0; j < 30; j++) {
+ const particle = document.createElement('div');
+ particle.style.position = 'fixed';
+ particle.style.left = x + 'px';
+ particle.style.top = y + 'px';
+ particle.style.width = '6px';
+ particle.style.height = '6px';
+ particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+ particle.style.borderRadius = '50%';
+ particle.style.pointerEvents = 'none';
+ particle.style.zIndex = '9999';
+ 
+ const angle = (Math.PI * 2 * j) / 30;
+ const velocity = Math.random() * 100 + 50;
+ const tx = Math.cos(angle) * velocity;
+ const ty = Math.sin(angle) * velocity;
+ 
+ particle.style.animation = 'none';
+ particle.style.transition = 'all 1s ease-out';
+ 
+ document.body.appendChild(particle);
+ 
+ setTimeout(() => {
+ particle.style.transform = `translate(${tx}px, ${ty}px)`;
+ particle.style.opacity = '0';
+ }, 10);
+ 
+ setTimeout(() => particle.remove(), 1000);
+ }
+ }, i * 300);
+ }
+ }
+
+ // Parallax effect on mouse move
+ document.addEventListener('mousemove', (e) => {
+ const stars = document.querySelectorAll('.star');
+ const x = e.clientX / window.innerWidth;
+ const y = e.clientY / window.innerHeight;
+ 
+ stars.forEach((star, index) => {
+ if (index % 5 === 0) {
+ const speed = (index % 10) + 1;
+ star.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+ }
+ });
+ });
+
+ // Auto-play typewriter effect restart
+ setInterval(() => {
+ const text = document.getElementById('typewriter-text');
+ text.style.animation = 'none';
+ setTimeout(() => {
+ text.style.animation = 'write 3s steps(40) forwards, blink 0.75s step-end infinite';
+ }, 100);
+ }, 8000);
+ </script>
 </body>
 </html>
